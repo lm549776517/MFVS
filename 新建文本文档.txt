@@ -1,0 +1,44 @@
+Apples,Golden Delicious,Kg or Bag,6 to 8 weeks,Local
+Apples,Granny Smith,Kg or Bag,6 to 8 weeks,Local
+Apples,Pink Lady,Kg or Bag,6 to 8 weeks,Local
+Apples,Fuji,Kg or Bag,6 to 8 weeks,Japan (Overseas)
+Apples,Royal Gala,Kg or Bag,6 to 8 weeks,Local
+Apricots - Seasonal,Apricots - Seasonal,Kg or Bag,6 to 12 months,Local
+Avocados,Avocados,Pieces,3 to 5 days,Local
+Bananas,Medium / Large Bananas,Kg or Bag,4 to 5 days,Thailand;China;Local
+Bananas,Extra Large Bananas,Kg or Bag,4 to 5 days,Thailand;China, Local
+Berries,Blackberries,Punnet (250g) or Box,3 to 5 days,Local
+Berries,Blueberries,Punnet (250g) or Box,3 to 5 days,Local
+Berries,Raspberries,Punnet (250g) or Box,3 to 5 days,Local
+Berries,Strawberries,Punnet (250g) or Box,3 to 5 days,Local
+Cherries - seasonal,Cherries - seasonal,Kg or Bag,3 to 5 days,Local
+Chestnuts - seasonal,Chestnuts - seasonal,Kg or Bag,3 to 5 days,Local
+Citrus,Grapefruit,Kg or Bag,3 to 5 days,Local
+Dates,Dates,Kg or Bag,6 to 12 months,Local;China
+Grapes,Black,Kg or Bag,3 to 5 days,Local
+Grapes,Green Seedless,Kg or Bag,3 to 5 days,Local
+Grapes,Red Seedless,Kg or Bag,3 to 5 days,Local
+Kiwifruit,Kiwifruit,Kg or Bag,3 to 7 days,Local
+Mango,Mango,Kg or Bag,3 to 7 days,Local
+Melon,Rockmelon,Kg or Bag,3 to 7 days,Local
+Melon,Honeydew,Kg or Bag,3 to 7 days,Local
+Melon,Watermelon Seedless,Kg or Bag,3 to 7 days,Local
+Papaya,Papaya - Green,Kg or Bag,3 to 5 days,Local
+Papaya,Papaya - Ripe,Kg or Bag,3 to 5 days,Local
+Passion Fruit,Passion Fruit,Kg or Bag,3 to 5 days,Local
+Pears,Green,Pieces  or Bag,3 to 5 days,Local
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
