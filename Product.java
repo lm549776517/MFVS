@@ -1,26 +1,33 @@
 
 public class Product
 {
-    private int x;
-
-    /**
-     * Constructor for objects of class Product
-     */
+    private int productID;
+    private String productName;
+    private String saleMethod;
+    private String shelfLife;
+    private String source;
+    private float price;
+    private String type;
+    
     public Product()
     {
         // initialise instance variables
-        x = 0;
+        productID = 0;
+        productName = "";
+        saleMethod = "";
+        shelfLife = "";
+        source = "";
+        price = 0;
+        type = "";
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public void displayProduct()
     {
-        // put your code here
-        return x + y;
+      
+    }
+    
+    public void Select(String productName)
+    {
+      
     }
 }
