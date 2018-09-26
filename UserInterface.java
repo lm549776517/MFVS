@@ -77,6 +77,7 @@ public class UserInterface
         {
             System.out.println("Password must within 8-16");
             username = input.nextLine();
+            checkPassword = visitor.passwordChecking(password);
         }
         visitor.register(username, password);
         userAccount.addUser(visitor.getRegisterInfo());       
