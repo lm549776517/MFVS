@@ -17,7 +17,7 @@ public class Account
      */
     public Account()
     {
-        userAccount = new HashMap<>();
+        userAccount = new HashMap<String, User>();
         visitor = new Visitor();
         owner = new Owner(); 
         userAccount.put(visitor.getUserName(), visitor);

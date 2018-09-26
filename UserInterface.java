@@ -105,4 +105,22 @@ public class UserInterface
         System.out.println("Press 6 Log off.");
 
     }
+    
+    public boolean login(String username, String password, Account userAccount)
+    {
+        Iterator keys =userAccount.getAccount().keySet().iterator();
+        while(keys.hasNext())
+        {
+            String key = (String)keys.next();
+            User value = (User)userAccount.getAccount().get(key);
+            if(username.equals(key))
+            {
+                if (password.equals(value.getPassword()))
+                {
+                    return true;
+                }
+            }            
+        }
+        return false;
+    }
 }
