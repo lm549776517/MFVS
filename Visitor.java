@@ -7,12 +7,14 @@ import java.util.*;
  */
 public class Visitor extends User
 {
+    private User newUser;
+    
     /**
      * Constructor for objects of class Visitor
      */
     public Visitor()
     {
-        super("visitor","00000000");
+        super("visitor","00000000");        
     }
 
     /**
@@ -23,7 +25,7 @@ public class Visitor extends User
      */
     public void register(String username, String password)
     {
-        User newUser = new User(username, password);
+        newUser = new User(username, password);
     }
     
     public boolean existChecking(HashMap<String, User> map, String userName)
@@ -47,5 +49,19 @@ public class Visitor extends User
             return false;
         }
         return true;
+    }
+    
+    public boolean passwordChecking(String password)
+    {
+        if (password.length() <1 | password.length() > 16)
+        {
+            return false;
+        }
+        return true;
+    }
+    
+    public User getRegisterInfo()
+    {
+        return newUser;
     }
 }
