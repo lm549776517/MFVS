@@ -44,7 +44,7 @@ public class Visitor extends User
     
     public boolean userNameLengthChecking(String userName)
     {
-        if (userName.length() <8 | userName.length() > 16)
+        if (userName.length() <1 | userName.length() > 16)
         {
             return false;
         }
@@ -53,7 +53,7 @@ public class Visitor extends User
     
     public boolean passwordChecking(String password)
     {
-        if (password.length() <1 | password.length() > 16)
+        if (password.length() <8 | password.length() > 16)
         {
             return false;
         }
