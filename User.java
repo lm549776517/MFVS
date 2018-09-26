@@ -14,10 +14,10 @@ public class User
     /**
      * Constructor for objects of class User
      */
-    public User()
+    public User(String userName, String passWord)
     {
-        userName = new String();
-        passWord = new String();
+        this.userName = userName;
+        this.passWord = passWord;
     }
 
     /**
@@ -29,5 +29,10 @@ public class User
     public String getUserName()
     {
         return userName;
+    }
+    
+    public String getPassWord()
+    {
+        return passWord;
     }
 }
