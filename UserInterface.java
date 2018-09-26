@@ -42,16 +42,20 @@ public class UserInterface
         String password;
         System.out.println("Please input the username!");
         username = input.nextLine();
-        while (visitor.userNameLengthChecking(username) == false) 
+        boolean checkLength = visitor.userNameLengthChecking(username);
+        boolean checkExist = visitor.existChecking(userAccount.getAccount(),username);
+        while (checkLength == false) 
         {
             System.out.println("Username must within 8-16 characters!");
             username = input.nextLine();
+            while (checkExist == false)
+            {
+                System.out.println("Username has already exist!");
+                username = input.nextLine();
+            }
         }
-        while (visitor.existChecking(userAccount.getAccount(),username)== false)
-        {
-            System.out.println("Username has already exist!");
-            username = input.nextLine();
-        }
+        
+        
         System.out.println("Please input the password!");
         password = input.nextLine();
     }
