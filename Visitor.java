@@ -26,7 +26,7 @@ public class Visitor extends User
         User newUser = new User(username, password);
     }
     
-    public boolean verifyUsername(HashMap<String, User> map, String userName)
+    public boolean existChecking(HashMap<String, User> map, String userName)
     {
         Iterator keys =map.keySet().iterator();
         while(keys.hasNext())
@@ -36,6 +36,15 @@ public class Visitor extends User
             {
                 return false;
             }            
+        }
+        return true;
+    }
+    
+    public boolean userNameLengthChecking(String userName)
+    {
+        if (userName.length() <8 | userName.length() > 16)
+        {
+            return false;
         }
         return true;
     }
