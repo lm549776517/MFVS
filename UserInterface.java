@@ -29,11 +29,12 @@ public class UserInterface
         
         System.out.println("Welcome to MFVS!");
         System.out.println("Press 1 login by username and password.");
-        System.out.println("Press 2 login as a vositor.");
+        System.out.println("Press 2 login as a visitor.");
         
         
     }
     
+
     public void userRegister(Visitor visitor)
     {
         Scanner input = new Scanner(System.in);
@@ -52,6 +53,33 @@ public class UserInterface
             username = input.nextLine();
         }
         System.out.println("Please input the password!");
-        password = input.nextLine();        
+        password = input.nextLine();
+    }
+
+    public void ownerMenu()
+    {
+        System.out.println("Welcome to MFVS!");
+        System.out.println("Press 1 search Product.");
+        System.out.println("Press 2 edit product.");
+        System.out.println("Press 3 add product.");
+        System.out.println("Press 4 remove product.");
+        System.out.println("Press 5 search customer.");
+    }
+    
+    public void visitorMenu()
+    {
+        System.out.println("Welcome to MFVS!");
+        System.out.println("Press 1 register.");
+        System.out.println("Press 2 view products.");
+    }
+    
+    public void customerMenu()
+    {
+        System.out.println("Welcome to MFVS!");
+        System.out.println("Press 1 view product.");
+        System.out.println("Press 2 search product.");
+        System.out.println("Press 3 update profile.");
+        System.out.println("Press 4 log off.");
+
     }
 }

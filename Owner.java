@@ -6,7 +6,9 @@
  * @version (a version number or a date)
  */
 public class Owner extends User
-{    
+{   
+    private int phoneNumber;
+    private String eMail;
     /**
      * Constructor for objects of class Owner
      */
@@ -15,13 +17,32 @@ public class Owner extends User
         super("Owner","777");
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public void sampleMethod()
+    public void login()
+    {
+        
+    }
+    
+    public void eidtProduct()
+    {
+        
+    }
+    
+    public void searchProduct(String productName)
+    {
+        
+    }
+    
+    public void addProduct()
+    {
+        
+    }
+    
+    public void removeProduct()
+    {
+        
+    }
+    
+    public void searchCustomer(String userName)
     {
         
     }
