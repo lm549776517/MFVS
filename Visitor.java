@@ -51,6 +51,15 @@ public class Visitor extends User
         return true;
     }
     
+    public boolean passwordChecking(String password)
+    {
+        if (password.length() <1 | password.length() > 16)
+        {
+            return false;
+        }
+        return true;
+    }
+    
     public User getRegisterInfo()
     {
         return newUser;

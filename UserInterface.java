@@ -53,11 +53,16 @@ public class UserInterface
                 System.out.println("Username has already exist!");
                 username = input.nextLine();
             }
-        }
-        
+        }        
         
         System.out.println("Please input the password!");
         password = input.nextLine();
+        boolean checkPassword = visitor.passwordChecking(password);
+        while (checkPassword == false)
+        {
+            System.out.println("Username has already exist!");
+            username = input.nextLine();
+        }
         visitor.register(username, password);
         userAccount.addUser(visitor.getRegisterInfo());       
     }
