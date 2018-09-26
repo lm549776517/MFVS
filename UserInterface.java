@@ -19,22 +19,15 @@ public class UserInterface
     }
 
     /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * 
      */
-    public void logIn()
-    {
-        
+   public void intialMenu()
+   {
         System.out.println("Welcome to MFVS!");
-        System.out.println("Press 1 login by username and password.");
-        System.out.println("Press 2 login as a visitor.");
-        
-        
-    }
-    
-
+        System.out.println("Press 1 Login with username and password.");
+        System.out.println("Press 2 Visitor Mode.");
+   }
+   
     public void userRegister(Visitor visitor)
     {
         Scanner input = new Scanner(System.in);
@@ -85,28 +78,31 @@ public class UserInterface
 
     public void ownerMenu()
     {
-        System.out.println("Welcome to MFVS!");
-        System.out.println("Press 1 search Product.");
-        System.out.println("Press 2 edit product.");
-        System.out.println("Press 3 add product.");
-        System.out.println("Press 4 remove product.");
-        System.out.println("Press 5 search customer.");
+        System.out.println("Ower menu: ");
+        System.out.println("Press 1 Search Product.");
+        System.out.println("Press 2 Edit product.");
+        System.out.println("Press 3 Add product.");
+        System.out.println("Press 4 Remove product.");
+        System.out.println("Press 5 Search customer.");
     }
     
     public void visitorMenu()
     {
-        System.out.println("Welcome to MFVS!");
-        System.out.println("Press 1 register.");
-        System.out.println("Press 2 view products.");
+        System.out.println("Visitor menu: ");
+        System.out.println("Press 1 Register.");
+        System.out.println("Press 2 View products.");
+        System.out.println("Press 3 Search products.");
     }
     
     public void customerMenu()
     {
-        System.out.println("Welcome to MFVS!");
-        System.out.println("Press 1 view product.");
-        System.out.println("Press 2 search product.");
-        System.out.println("Press 3 update profile.");
-        System.out.println("Press 4 log off.");
+        System.out.println("Customer menu: ");
+        System.out.println("Press 1 View product.");
+        System.out.println("Press 2 Search product.");
+        System.out.println("Press 3 Update profile.");
+        System.out.println("Press 4 View shopping cart.");
+        System.out.println("Press 5 View order.");
+        System.out.println("Press 6 Log off.");
 
     }
 }
