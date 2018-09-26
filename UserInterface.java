@@ -46,12 +46,27 @@ public class UserInterface
         boolean checkExist = visitor.existChecking(userAccount.getAccount(),username);
         while (checkLength == false) 
         {
-            System.out.println("Username must within 8-16 characters!");
+            System.out.println("Username must less than 16 characters!");
+            System.out.println("Please input the username!");
             username = input.nextLine();
+            checkLength = visitor.userNameLengthChecking(username);
+        }
+        if (checkLength == true)
+        {
             while (checkExist == false)
             {
                 System.out.println("Username has already exist!");
+                System.out.println("Please input the username!");
                 username = input.nextLine();
+                checkLength = visitor.userNameLengthChecking(username);
+                while (checkLength == false) 
+                {
+                    System.out.println("Username must less than 16 characters!");
+                    System.out.println("Please input the username!");
+                    username = input.nextLine();
+                    checkLength = visitor.userNameLengthChecking(username);
+                }
+                checkExist = visitor.existChecking(userAccount.getAccount(),username);
             }
         }        
         
