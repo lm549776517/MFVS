@@ -54,6 +54,8 @@ public class UserInterface
         }
         System.out.println("Please input the password!");
         password = input.nextLine();
+        visitor.register(username, password);
+        userAccount.addUser(visitor.getRegisterInfo());       
     }
 
     public void ownerMenu()
