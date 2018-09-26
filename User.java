@@ -1,4 +1,4 @@
-
+import java.util.*;
 /**
  * Write a description of class User here.
  *
@@ -8,15 +8,16 @@
 public class User
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private String userName;
+    private String passWord;
 
     /**
      * Constructor for objects of class User
      */
     public User()
     {
-        // initialise instance variables
-        x = 0;
+        userName = new String();
+        passWord = new String();
     }
 
     /**
@@ -25,9 +26,8 @@ public class User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public int sampleMethod(int y)
+    public String getUserName()
     {
-        // put your code here
-        return x + y;
+        return userName;
     }
 }
