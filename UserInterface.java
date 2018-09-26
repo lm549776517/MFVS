@@ -75,7 +75,7 @@ public class UserInterface
         boolean checkPassword = visitor.passwordChecking(password);
         while (checkPassword == false)
         {
-            System.out.println("Username has already exist!");
+            System.out.println("Password must within 8-16");
             username = input.nextLine();
         }
         visitor.register(username, password);
