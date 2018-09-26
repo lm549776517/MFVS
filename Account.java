@@ -21,7 +21,7 @@ public class Account
         visitor = new Visitor();
         owner = new Owner(); 
         userAccount.put(visitor.getUserName(), visitor);
-        userAccount.put(owner.gettUaerName(),  owner);        
+        userAccount.put(owner.getUserName(),  owner);        
     }
 
     /**
