@@ -1,10 +1,5 @@
 import java.util.*;
-/**
- * Write a description of class UserInterface here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
+import java.util.Scanner;
 public class UserInterface
 {
     // instance variables - replace the example below with your own
@@ -23,9 +18,32 @@ public class UserInterface
      */
    public void intialMenu()
    {
-        System.out.println("Welcome to MFVS!");
-        System.out.println("Press 1 Login with username and password.");
-        System.out.println("Press 2 Visitor Mode.");
+        int option = 0;
+        Scanner input = new Scanner(System.in);
+        boolean optionValid = false;
+        while(!optionValid) 
+        {
+            System.out.println("Welcome to MFVS!");
+            System.out.println("Press 1 Login with username and password.");
+            System.out.println("Press 2 Visitor Mode.");
+            option = input.nextInt();
+            if(option == 1 || option ==2)
+            { 
+              optionValid = true;
+            } else{
+                System.out.println("Invalid option! Please re-enter!");  
+            }
+        }
+        switch(option)
+        {
+            case 1:
+                loginPage(); 
+                break;
+            case 2:
+                Visitor aVisitor = new Visitor();
+                visitorMenu(aVisitor);
+                break;
+        }
    }
    
     public void userRegister(Visitor visitor)
@@ -62,7 +80,6 @@ public class UserInterface
                 checkExist = visitor.existChecking(userAccount.getAccount(),username);
             }
         }        
-        
         System.out.println("Please input the password!");
         password = input.nextLine();
         boolean checkPassword = visitor.passwordChecking(password);
@@ -73,7 +90,9 @@ public class UserInterface
             checkPassword = visitor.passwordChecking(password);
         }
         visitor.register(username, password);
-        userAccount.addUser(visitor.getRegisterInfo());       
+        userAccount.addUser(visitor.getRegisterInfo()); 
+        System.out.println("Register successfully!");
+        loginPage();
     }
 
     public void ownerMenu()
@@ -86,12 +105,31 @@ public class UserInterface
         System.out.println("Press 5 Search customer.");
     }
     
-    public void visitorMenu()
+    public void visitorMenu(Visitor visitor)
     {
-        System.out.println("Visitor menu: ");
-        System.out.println("Press 1 Register.");
-        System.out.println("Press 2 View products.");
-        System.out.println("Press 3 Search products.");
+        int option=0;
+        Scanner input = new Scanner(System.in);
+        boolean optionValid = false;
+        while(!optionValid) {
+         System.out.println("Visitor menu: ");
+         System.out.println("Press 1 Register.");
+         System.out.println("Press 2 View products.");
+         System.out.println("Press 3 Search products.");
+         option = input.nextInt();
+        if(option == 1 || option == 2 || option == 3)
+        { 
+          optionValid = true;
+        } else{
+            System.out.println("Invalid option! Please re-enter!");  
+        }
+       }
+        switch(option)
+       {
+        case 1:
+            userRegister(visitor);
+            break;
+        }
+       
     }
     
     public void customerMenu()
@@ -104,6 +142,59 @@ public class UserInterface
         System.out.println("Press 5 View order.");
         System.out.println("Press 6 Log off.");
 
+    }
+    
+
+    public boolean login(String username, String password, Account userAccount)
+    {
+        Iterator keys =userAccount.getAccount().keySet().iterator();
+        while(keys.hasNext())
+        {
+            String key = (String)keys.next();
+            User value = (User)userAccount.getAccount().get(key);
+            if(username.equals(key))
+            {
+                if (password.equals(value.getPassword()))
+                {
+                    return true;
+                }
+            }            
+        }
+        return false;
+    }
+    
+    public void loginPage()
+    {
+        String userName;
+        String password;
+        boolean valid = false;
+        Scanner input = new Scanner(System.in);
+        System.out.println("This is login page!");
+        while(! valid)
+        {
+            System.out.println("Pleae input username:");
+            userName = input.nextLine();
+            System.out.println("Please input password:");
+            password = input.nextLine();
+            
+            if (login(userName, password, userAccount))
+            {
+                valid = true;
+                System.out.println("Login successfully");
+                if (userName == "Owner")
+                {
+                    ownerMenu();
+                }
+                else
+                {
+                    customerMenu();
+                }
+            }
+            else
+            {
+                System.out.println("UserName or password is incorrect.");
+            }
+        }
     }
     
 }
