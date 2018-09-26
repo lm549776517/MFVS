@@ -5,7 +5,6 @@ public class order
     private String createDate;
     private String dateShipped;
     private String userName;
-    User user = new User();
     private boolean shipStatus;
     private int productID;
     private String productName;
@@ -17,19 +16,19 @@ public class order
                  int productID,String productName,int Quantity,float unitCost,
                  float subtotal)
     {
-        this.user.getUserName() = userName;
-        
+        this.userName = user.getUserName();
+        this.orderID = orderID;
+        this.createDate = createDate;
+        this.dateShipped = dateShipped;
+        this.productID = productID;
+        this.productName = productName;
+        this.Quantity = Quantity;
+        this.unitCost = unitCost;
+        this.subtotal = subtotal;
     }
 
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
+    public void displayOrder()
     {
-        // put your code here
-        return x + y;
+        
     }
 }
