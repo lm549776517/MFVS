@@ -34,4 +34,9 @@ public class Account
     {
         userAccount.put(user.getUserName(),user);
     }
+    
+    public HashMap getAccount()
+    {
+        return userAccount;
+    }
 }
