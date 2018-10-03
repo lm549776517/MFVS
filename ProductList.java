@@ -32,8 +32,22 @@ public class ProductList
         for (Product d : productList)
         {
             if (d.getProductID() == productID)
+            {
                 productList.remove(d);
-        }       
-     
+                break;
+            }
+        }          
+    }
+    
+    public void removeProduct(String productID)
+    {
+        for (Product d : productList)
+        {
+            if (d.getProductName().equals(productID))
+            {
+                productList.remove(d);
+                break;
+            }
+        }          
     }
 }
