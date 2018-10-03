@@ -105,4 +105,19 @@ public class UserInterface
         System.out.println("Press 6 Log off.");
 
     }
+    
+    public void mainPage()
+    {
+        intialMenu();
+        Scanner input = new Scanner(System.in);
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            
+        }
+        else if (option == 2)
+        {
+            
+        }
+    }
 }
