@@ -22,7 +22,7 @@ public class Visitor extends User
      */
     public void register(String username, String password)
     {
-        newUser = new User(username, password);
+        newUser = new Customer(username, password);
     }
     
     public boolean existChecking(HashMap<String, User> map, String userName)

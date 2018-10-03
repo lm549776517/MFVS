@@ -9,15 +9,15 @@ public class User
 {
     // instance variables - replace the example below with your own
     private String userName;
-    private String passWord;
+    private String password;
 
     /**
      * Constructor for objects of class User
      */
-    public User(String userName, String passWord)
+    public User(String userName, String password)
     {
         this.userName = userName;
-        this.passWord = passWord;
+        this.password = password;
     }
 
     /**
@@ -31,8 +31,8 @@ public class User
         return userName;
     }
     
-    public String getPassWord()
+    public String getPassword()
     {
-        return passWord;
+        return password;
     }
 }

@@ -8,7 +8,6 @@ import java.util.*;
         private String source;
         private float price;
         private String type;
-        private ArrayList<Product> productList;
         
     public Product(int productID,String productName,String saleMethod,String shelfLife,
                     String source,float price,String type)
@@ -23,18 +22,13 @@ import java.util.*;
         this.type = type;
         
     }
-
-    public void addProduct(Product product)
-    {   
-        productList.add(product);
-    }
     
-    public int getproductID()
+    public int getProductID()
     {
         return productID;
     }
     
-    public String getproductName()
+    public String getProductName()
     {
         return productName;
     }
