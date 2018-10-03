@@ -24,42 +24,38 @@ import java.util.*;
         
     }
 
-    public void addProduct(Product product)
-    {   
-        productList.add(product);
-    }
     
-    public int getproductID()
+    public int getProductID()
     {
         return productID;
     }
     
-    public String getproductName()
+    public String getProductName()
     {
         return productName;
     }
     
-    public String getsaleMethod()
+    public String getSaleMethod()
     {
         return saleMethod;
     }
     
-    public String getshelfLife()
+    public String getShelfLife()
     {
         return shelfLife;
     }
     
-    public String getsource()
+    public String getSource()
     {
         return source;
     }
     
-    public float getprice()
+    public float getPrice()
     {
         return price;
     }
     
-    public String gettype()
+    public String getType()
     {
         return type;
     }
