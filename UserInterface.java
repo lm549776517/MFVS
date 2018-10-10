@@ -143,6 +143,44 @@ public class UserInterface
 
     }
     
+    public void addProduct()
+    {
+        
+    }
+    
+    public void inputProductInfo(String productInfo)
+    {
+        Scanner input = new Scanner(System.in);
+        boolean isString = false;
+        String name = productInfo;
+        while(! isString)
+        {
+            System.out.println("Pleae input "+ name + ": ");
+            productInfo = input.nextLine();
+            if (isAlpha(productInfo))
+            {
+                isString = true;
+            }
+            else
+            {
+                System.out.println("Only letter is allowed, please reinput.");
+            }
+        }
+    }
+    
+    public boolean isAlpha(String aString) 
+    {
+        char[] chars = aString.toCharArray();
+        for (char c : chars) 
+        {
+            if(!Character.isLetter(c)) 
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public boolean login(String username, String password, Account userAccount)
     {
@@ -161,6 +199,7 @@ public class UserInterface
         }
         return false;
     }
+    
     public void loginPage()
     {
         String userName;
