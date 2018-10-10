@@ -1,12 +1,12 @@
 import java.util.*;
-public class order
+public class Order
 {
     private String productID;
     private String productName;
     private float Quantity;
     private float unitCost;
     
-    public order(String productID,String productName,float Quantity,float unitCost)
+    public Order(String productID,String productName,float Quantity,float unitCost)
     {
         this.productID = productID;
         this.productName = productName;
@@ -34,3 +34,5 @@ public class order
         return unitCost;
     }
 }
+
+
