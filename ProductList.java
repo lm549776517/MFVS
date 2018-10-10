@@ -58,5 +58,48 @@ public class ProductList
         return productList;
     }
     
+    public void setProductName(Product product, String productName)
+    {
+        product.setProductName(productName);
+    }
     
+    public void setCategory(Product product, String category)
+    {
+        product.setCategory(category);
+    }
+    
+    public void setSaleMethod(Product product,String method)
+    {
+        product.setSaleMethod(method);
+    }
+    
+    public void setShelfLife(Product product,int shelfLife)
+    {
+        product.setShelfLife(shelfLife);
+    }
+    
+    public void setSource(Product product,String source)
+    {
+        product.setSource(source);
+    }
+    
+    public void setPrice(Product product,float price)
+    {
+        product.setPrice(price);
+    }
+    
+    public void setDate(Product product,Date date)
+    {
+        product.setAddDate(date);
+    }
+    
+    public void setQuantity(Product product,float quantity)
+    {
+        product.setQuantity(quantity);
+    }
+
+    public void setType(Product product,String type)
+    {
+        product.setType(type);
+    }
 }
