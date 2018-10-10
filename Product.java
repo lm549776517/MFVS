@@ -4,17 +4,16 @@ import java.util.*;
         private String productID;
         private String productName;
         private String saleMethod;
-        private String shelfLife;
+        private int shelfLife;
         private String source;
         private float price;
         private String type;
-        private int quantity;
-        private String addDate;
-        private ArrayList<Product> productList;
+        private float quantity;
+        private Date addDate;
         
-    public Product(String productName,String saleMethod,String shelfLife,
+    public Product(String productName,String saleMethod,int shelfLife,
                     String source,float price,String type,
-                    String addDate,int quantity)
+                    Date addDate,float quantity)
     {
         // initialise instance variables
         this.productID = productID;
@@ -46,7 +45,7 @@ import java.util.*;
         return saleMethod;
     }
     
-    public String getShelfLife()
+    public int getShelfLife()
     {
         return shelfLife;
     }
@@ -66,22 +65,55 @@ import java.util.*;
         return type;
     }
     
-    public String getAddDate()
+    public Date getAddDate()
     {
         return addDate;
     }
     
-    public int getQuantity()
+    public float getQuantity()
     {
         return quantity;
     }
-    public void displayProduct()
+    
+    public void setProductName(String name)
     {
-      
+        productName = name;
     }
     
-    public void Select(String productName)
+    public void setSaleMethod(String method)
     {
-      
+        saleMethod = method;
     }
+    
+    public void setShelfLife(int shelflife)
+    {
+        shelfLife = shelflife;
+    }
+    
+    public void setSource(String Source)
+    {
+        source = Source;
+    }
+    
+    public void setPrice(float Price)
+    {
+        price = Price;
+    }
+    
+    public void setType(String Type)
+    {
+        type = Type;
+    }
+    
+    public void setAddDate(Date AddDate)
+    {
+        addDate = AddDate;
+    }
+    
+    public void setQuantity(float q)
+    {
+        quantity = q;
+    }
+ 
+ 
 }
