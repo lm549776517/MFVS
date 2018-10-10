@@ -1,36 +1,36 @@
-
+import java.util.*;
 public class order
 {
-    private String orderID;
-    private String createDate;
-    private String dateShipped;
-    private String userName;
-    private boolean shipStatus;
-    private int productID;
+    private String productID;
     private String productName;
-    private int Quantity;
+    private float Quantity;
     private float unitCost;
-    private float subtotal;
-
-    public order(String orderID,String createDate,User user,String dateShipped,
-                 int productID,String productName,int Quantity,float unitCost,
-                 float subtotal)
+    
+    public order(String productID,String productName,float Quantity,float unitCost)
     {
-        this.userName = user.getUserName();
-        this.orderID = orderID;
-        this.createDate = createDate;
-        this.dateShipped = dateShipped;
         this.productID = productID;
         this.productName = productName;
         this.Quantity = Quantity;
         this.unitCost = unitCost;
-        this.subtotal = subtotal;
-    }
-
-    public void displayOrder()
-    {
-        
     }
     
-   
+    public String getProductID()
+    {   
+        return productID;
+    }
+    
+    public String getProductName()
+    {
+        return productName;
+    }
+    
+    public float getQuantity()
+    {
+        return Quantity;
+    }
+    
+    public float getUnitCost()
+    {
+        return unitCost;
+    }
 }
