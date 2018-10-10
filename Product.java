@@ -1,76 +1,127 @@
 import java.util.*;
    public class Product
    {
-        private int productID;
+        private String productID;
         private String productName;
+        private String category;
         private String saleMethod;
-        private String shelfLife;
+        private int shelfLife;
         private String source;
         private float price;
         private String type;
-        private ArrayList<Product> productList;
+        private float quantity;
+        private Date addDate;
         
-    public Product(int productID,String productName,String saleMethod,String shelfLife,
-                    String source,float price,String type)
+    public Product(String productName,String category,String saleMethod,int shelfLife,
+                    String source,float price,String type,
+                    Date addDate,float quantity)
     {
         // initialise instance variables
         this.productID = productID;
         this.productName = productName;
+        this.category = category;
         this.saleMethod = saleMethod;
         this.shelfLife = shelfLife;
         this.source = source;
         this.price = price;
         this.type = type;
+        this.addDate = addDate;
+        this.quantity = quantity;
+        productID = productName + addDate;
         
     }
 
-    public void addProduct(Product product)
-    {   
-        productList.add(product);
-    }
     
-    public int getproductID()
+    public String getProductID()
     {
         return productID;
     }
     
-    public String getproductName()
+    public String getProductName()
     {
         return productName;
     }
     
-    public String getsaleMethod()
+    public String getSaleMethod()
     {
         return saleMethod;
     }
     
-    public String getshelfLife()
+    public int getShelfLife()
     {
         return shelfLife;
     }
     
-    public String getsource()
+    public String getSource()
     {
         return source;
     }
     
-    public float getprice()
+    public float getPrice()
     {
         return price;
     }
     
-    public String gettype()
+    public String getType()
     {
         return type;
     }
     
-    public void displayProduct()
+    public Date getAddDate()
     {
-      
+        return addDate;
     }
     
-    public void Select(String productName)
+    public float getQuantity()
     {
-      
+        return quantity;
+    }
+    
+    public void setProductName(String name)
+    {
+        productName = name;
+        productID = productName + addDate;
+    }
+    
+    public void setSaleMethod(String method)
+    {
+        saleMethod = method;
+    }
+    
+    public void setShelfLife(int shelflife)
+    {
+        shelfLife = shelflife;
+    }
+    
+    public void setSource(String Source)
+    {
+        source = Source;
+    }
+    
+    public void setPrice(float Price)
+    {
+        price = Price;
+    }
+    
+    public void setType(String Type)
+    {
+        type = Type;
+    }
+    
+    public void setAddDate(Date AddDate)
+    {
+        addDate = AddDate;
+        productID = productName + addDate;
+    }
+    
+    public void setQuantity(float q)
+    {
+        quantity = q;
+    }
+ 
+    public void setCategory(String category)
+    {
+        this.category = category;
     }
 }
+

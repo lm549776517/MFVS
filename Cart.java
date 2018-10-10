@@ -7,38 +7,23 @@ import java.util.*;
  */
 public class Cart
 {
-    private String cartID;
-    private int productID;
-    private int quantity;
     private String dateAdded;
-    private User aUser;
-    private ArrayList<String> cartList;
+    private HashMap<Product, Integer> cartList;
     
     //miss dateAdded
-    public Cart(int productID,
-                int quantity)
+    public Cart()
     {
-        cartID = aUser.getUserName() + " cart";
-        this.productID = productID;
-        this.quantity = quantity;
-        cartList = new ArrayList<>();
+       cartList = new HashMap<Product, Integer>();
     }
     
-    public void addProduct(String productName)
+    public void addProduct(Product product, int quantity)
     {
-        cartList.add(productName);
+        cartList.put(product, quantity);
     }
     
-    public void deleteProduct(String productName)
+    public void deleteProduct(Product product)
     {
-        if (cartList.contains(productName))
-        {
-            cartList.remove(productName);
-        }
-        else
-        {
-            System.out.print("You don't hava this product, please ");
-        }
+        cartList.remove(product);
     }
     
     public void updateQuantity(String productName,
@@ -52,9 +37,9 @@ public class Cart
         
     }
     
-    public void displayCart()
+    public HashMap getCart()
     {
-        
+        return cartList;
     }
     
     public float calculateUnitPrice()

@@ -1,9 +1,11 @@
 import java.util.*;
 import java.util.Scanner;
+import java.text.SimpleDateFormat;
 public class UserInterface
 {
     // instance variables - replace the example below with your own
     private Account userAccount;
+    private ProductList productList;
 
     /**
      * Constructor for objects of class UserInterface
@@ -11,36 +13,39 @@ public class UserInterface
     public UserInterface()
     {
         userAccount = new Account();
+        productList = new ProductList();
     }
 
     /**
      * 
      */
-   public void intialMenu(Visitor visitor)
+   public void intialMenu()
    {
-        int option=0;
+        int option = 0;
         Scanner input = new Scanner(System.in);
         boolean optionValid = false;
-        while(!optionValid) {
+        while(!optionValid) 
+        {
             System.out.println("Welcome to MFVS!");
             System.out.println("Press 1 Login with username and password.");
             System.out.println("Press 2 Visitor Mode.");
             option = input.nextInt();
-        if(option == 1 || option ==2)
-        { 
-          optionValid = true;
-        } else{
-            System.out.println("Invalid option! Please re-enter!");  
+            if(option == 1 || option ==2)
+            { 
+              optionValid = true;
+            } else{
+                System.out.println("Invalid option! Please re-enter!");  
+            }
         }
-       }
-       switch(option)
-       {
-        case 1:
-            loginPage();
-            break;
-        case 2:
-            visitorMenu(visitor);
-            break;
+        switch(option)
+        {
+            case 1:
+                loginPage(); 
+                break;
+            case 2:
+                Visitor aVisitor = new Visitor();
+                visitorMenu(aVisitor);
+                break;
         }
    }
    
@@ -78,7 +83,6 @@ public class UserInterface
                 checkExist = visitor.existChecking(userAccount.getAccount(),username);
             }
         }        
-        
         System.out.println("Please input the password!");
         password = input.nextLine();
         boolean checkPassword = visitor.passwordChecking(password);
@@ -143,16 +147,113 @@ public class UserInterface
 
     }
     
-    public void addProduct()
+    public void addOneProduct()
     {
-        
+        Scanner input = new Scanner(System.in);
+        String productName = inputProductInfo("productName");
+        String category = inputProductInfo("category");
+        String saleMethod = inputProductInfo("saleMethod");
+        String source = inputProductInfo("source");
+        String type = inputProductInfo("type");
+        float price = inputFloat("price");
+        float quantity = inputFloat("quantity");
+        int shelfLife = inputInt("shelfLife");
+        Date addDate = inputDate();
+        System.out.println("Input information completed.");
+        System.out.println("Do you want to save this product? Y/N");
+        boolean stop = false;
+        while(! stop)
+        {
+            char choose = input.nextLine().charAt(0);
+            if (choose == 'Y' || choose == 'y')
+            {
+                productList.addProduct(productName, category, saleMethod, shelfLife,
+                                       source, price, type, addDate, quantity);
+                stop = true;
+            }  
+            else if (choose == 'N' || choose == 'n')
+            {
+                stop = true;
+                ownerMenu();
+            }
+            else
+            {
+                System.out.println("Invalid input, please input Y or N.");
+            }
+        }   
     }
     
-    public void inputProductInfo(String productInfo)
+    public Date inputDate()
+    {
+        Scanner input = new Scanner(System.in);
+        boolean isValid = false;
+        Date addDate = new Date();
+        while(! isValid)
+        {
+            System.out.println("Please input the add date, the format must be dd/MM/yyyy: ");
+            String aDate = input.nextLine();  
+            try
+            {
+                addDate = new SimpleDateFormat("dd/MM/yyyy").parse(aDate);
+                isValid = true;
+            }
+            catch(Exception e)
+            {
+                System.out.println("Invalid date format, please reinput");
+            }
+        }
+        return addDate;
+    }
+    
+    public float inputFloat(String name)
+    {
+        Scanner input = new Scanner(System.in);
+        float num = 0;
+        boolean isFloat = false;
+        while(! isFloat)
+        {
+            System.out.println("Please input " + name + ", only number is allowed:");
+            try
+            {
+                num = input.nextFloat();
+                isFloat = true;
+            }
+            catch(InputMismatchException e)
+            {
+                input.nextLine();
+                System.out.println("Invalid input, please input number");
+            }
+        }
+        return num;
+    }
+    
+    public int inputInt(String name)
+    {
+        Scanner input = new Scanner(System.in);
+        int num = 0;
+        boolean isInt = false;
+        while(! isInt)
+        {
+            System.out.println("Please input " + name + ", only number is allowed:");
+            try
+            {
+                num = input.nextInt();
+                isInt = true;
+            }
+            catch(InputMismatchException e)
+            {
+                input.nextLine();
+                System.out.println("Invalid input, please input number");
+            }
+        }
+        return num;
+    }
+    
+    public String inputProductInfo(String name)
     {
         Scanner input = new Scanner(System.in);
         boolean isString = false;
-        String name = productInfo;
+        String productInfo = "";
         while(! isString)
         {
             System.out.println("Pleae input "+ name + ": ");
@@ -166,7 +267,10 @@ public class UserInterface
                 System.out.println("Only letter is allowed, please reinput.");
             }
         }
+        return productInfo;
     }
+    
+    
     
     public boolean isAlpha(String aString) 
     {
@@ -179,6 +283,22 @@ public class UserInterface
             }
         }
         return true;
+    }
+
+
+    public void mainPage()
+    {
+        intialMenu();
+        Scanner input = new Scanner(System.in);
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            
+        }
+        else if (option == 2)
+        {
+            
+        }
     }
 
 
@@ -204,11 +324,35 @@ public class UserInterface
     {
         String userName;
         String password;
+        boolean valid = false;
         Scanner input = new Scanner(System.in);
         System.out.println("This is login page!");
-        System.out.println("Pleae input username:");
-        userName = input.nextLine();
-        System.out.println("Please input password:");
-        password = input.nextLine();
+        while(! valid)
+        {
+            System.out.println("Pleae input username:");
+            userName = input.nextLine();
+            System.out.println("Please input password:");
+            password = input.nextLine();
+            
+            if (login(userName, password, userAccount))
+            {
+                valid = true;
+                System.out.println("Login successfully");
+                if (userName == "Owner")
+                {
+                    ownerMenu();
+                }
+                else
+                {
+                    customerMenu();
+                }
+            }
+            else
+            {
+                System.out.println("UserName or password is incorrect.");
+            }
+        }
     }
+    
+
 }
