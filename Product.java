@@ -119,6 +119,9 @@ import java.util.*;
         quantity = q;
     }
  
- 
+    public void setCategory(String category)
+    {
+        this.category = category;
+    }
 }
 
