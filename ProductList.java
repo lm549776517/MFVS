@@ -19,8 +19,8 @@ public class ProductList
 
 
     public void addProduct(String productName,String category,String saleMethod,int shelfLife,
-    String source,float price,String type,
-    Date addDate,float quantity)
+                    String source,float price,String type,
+                    Date addDate,float quantity)
     {
         Product product = new Product(productName,category,saleMethod,shelfLife,
                    source,price,type,addDate,quantity);
@@ -58,5 +58,44 @@ public class ProductList
         return productList;
     }
     
-    public void 
+    public void setProductName(Product product, String productName)
+    {
+        product.setProductName(productName);
+    }
+    
+    public void setSaleMethod(Product product,String method)
+    {
+        product.setSaleMethod(method);
+    }
+    
+    public void setShelfLife(int shelflife)
+    {
+        shelfLife = shelflife;
+    }
+    
+    public void setSource(String Source)
+    {
+        source = Source;
+    }
+    
+    public void setPrice(float Price)
+    {
+        price = Price;
+    }
+    
+    public void setType(String Type)
+    {
+        type = Type;
+    }
+    
+    public void setAddDate(Date AddDate)
+    {
+        addDate = AddDate;
+        productID = productName + addDate;
+    }
+    
+    public void setQuantity(float q)
+    {
+        quantity = q;
+    }
 }
