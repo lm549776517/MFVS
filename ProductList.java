@@ -18,36 +18,45 @@ public class ProductList
     }
 
 
-    public void addProduct(int productID,String productName,
-                            String saleMethod,String shelfLife,
-                            String source,float price,String type)
+    public void addProduct(String productName,String category,String saleMethod,int shelfLife,
+    String source,float price,String type,
+    Date addDate,float quantity)
     {
-        Product product = new Product(productID,productName,saleMethod,shelfLife,
-                   source,price,type);
+        Product product = new Product(productName,category,saleMethod,shelfLife,
+                   source,price,type,addDate,quantity);
         productList.add(product);
     }
     
-    public void removeProduct(int productID)
+    public void removeProductAsID(String productID)
     {
-        for (Product d : productList)
+        Iterator<Product> it = productList.iterator();
+        while(it.hasNext())
         {
-            if (d.getProductID() == productID)
+            Product product = it.next();
+            if (product.getProductID().equals(productID))
             {
-                productList.remove(d);
-                break;
+                it.remove();                
             }
         }          
     }
     
-    public void removeProduct(String productID)
+    public void removeProductAsName(String productName)
     {
-        for (Product d : productList)
+        Iterator<Product> it = productList.iterator();
+        while(it.hasNext())
         {
-            if (d.getProductName().equals(productID))
+            Product product = it.next();
+            if (product.getProductName().equals(productName))
             {
-                productList.remove(d);
-                break;
+                it.remove();                
             }
         }          
     }
+    
+    public ArrayList<Product> getProductList()
+    {
+        return productList;
+    }
+    
+    public void 
 }
