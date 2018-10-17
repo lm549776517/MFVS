@@ -10,11 +10,11 @@ import java.util.*;
         private float price;
         private String type;
         private float quantity;
-        private Date addDate;
+        private int addDate;
         
     public Product(String productName,String category,String saleMethod,int shelfLife,
                     String source,float price,String type,
-                    Date addDate,float quantity)
+                    int addDate,float quantity)
     {
         // initialise instance variables
         this.productID = productID;
@@ -67,7 +67,7 @@ import java.util.*;
         return type;
     }
     
-    public Date getAddDate()
+    public int getAddDate()
     {
         return addDate;
     }
@@ -108,7 +108,7 @@ import java.util.*;
         type = Type;
     }
     
-    public void setAddDate(Date AddDate)
+    public void setAddDate(int AddDate)
     {
         addDate = AddDate;
         productID = productName + addDate;

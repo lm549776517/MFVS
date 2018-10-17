@@ -20,7 +20,7 @@ public class ProductList
 
     public void addProduct(String productName,String category,String saleMethod,int shelfLife,
                     String source,float price,String type,
-                    Date addDate,float quantity)
+                    int addDate,float quantity)
     {
         Product product = new Product(productName,category,saleMethod,shelfLife,
                    source,price,type,addDate,quantity);
@@ -88,7 +88,7 @@ public class ProductList
         product.setPrice(price);
     }
     
-    public void setDate(Product product,Date date)
+    public void setDate(Product product,int date)
     {
         product.setAddDate(date);
     }

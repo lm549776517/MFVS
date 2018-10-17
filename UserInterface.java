@@ -95,7 +95,7 @@ public class UserInterface
                 break;
                 
             case "addDate":
-                Date newAttribute6 = inputDate();
+                int newAttribute6 = inputInt("addDate");
                 productList.get(index).setAddDate(newAttribute6);
                 break;
                 
@@ -607,8 +607,9 @@ public class UserInterface
             System.out.println("Press 1 Register.");
             System.out.println("Press 2 View products.");
             System.out.println("Press 3 Search products.");
+            System.out.println("Pres 4 Return to main page.");
             option = input.nextInt();
-            if(option == 1 || option == 2 || option == 3)
+            if(option == 1 || option == 2 || option == 3 || option == 4)
             { 
                 optionValid = true;
             } else{
@@ -628,6 +629,9 @@ public class UserInterface
             case 3:
                 searchProduct();
                 visitorMenu(visitor);
+                break;
+            case 4:
+                intialMenu();
                 break;
         }
     }
@@ -820,7 +824,7 @@ public class UserInterface
             float price = inputFloat("price");
             float quantity = inputFloat("quantity");
             int shelfLife = inputInt("shelfLife");
-            Date addDate = inputDate();
+            int addDate = inputInt("addDate");
             System.out.println("Input information completed.");
             System.out.println("Do you want to save this product? Y/N");
             boolean stop = false;
@@ -866,24 +870,25 @@ public class UserInterface
     }
     
 
-    public Date inputDate()
+    public String inputDate()
     {
         Scanner input = new Scanner(System.in);
         boolean isValid = false;
-        Date addDate = new Date();
+        String addDate = new String();
         while(! isValid)
         {
             System.out.println("Please input the add date, the format must be dd/MM/yyyy: ");
             String aDate = input.nextLine();  
-            try
-            {
-                addDate = new SimpleDateFormat("mm/dd/yyyy").parse(aDate);
+            //try
+            //{
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                addDate = formatter.format(aDate);
                 isValid = true;
-            }
-            catch(Exception e)
+            //}
+            /*catch(Exception e)
             {
                 System.out.println("Invalid date format, please reinput");
-            }
+            }*/
         }
         return addDate;
     }
