@@ -168,21 +168,50 @@ public class UserInterface
         }
         System.out.println("Press 1 Edit product");
         System.out.println("Press 2 Remove product");
+        System.out.println("Press 3 Return to Owner Menu");
         int option = input.nextInt();
         if (option == 1)
         {
+            boolean co = false;
+            do
+            {
             System.out.println("Input the product index: ");
             int productIndex = input.nextInt();
             System.out.println("Input the product attribute: ");
             Scanner sc2 = new Scanner(System.in);
             String attribute = sc2.nextLine();
             editProduct(productIndex, attribute);
+            System.out.println("Edit compeleted!");            
+            System.out.println("Press E/e to end editing or any keys to continue");
+            char con = sc2.nextLine().charAt(0);
+            if(con == 'E' || con == 'e')
+            {
+                co = true;
+            }
+            }while(!co);
+            viewProductPage();
         }
         if (option == 2)
         {
+            boolean co = false;
+            do
+            {
             System.out.println("Input the product index: ");
             int productIndex = input.nextInt();
             removeProduct(productIndex);
+            Scanner sc2 = new Scanner(System.in);
+            System.out.println("Press E/e to end deleting or any keys to continue");
+            char con = sc2.nextLine().charAt(0);
+            if(con == 'E' || con == 'e')
+            {
+                co = true;
+            }
+            }while(!co);
+            viewProductPage();
+        }
+        if (option == 3)
+        {
+            ownerMenu();
         }
     }
 
@@ -383,7 +412,7 @@ public class UserInterface
             String aDate = input.nextLine();  
             try
             {
-                addDate = new SimpleDateFormat("dd/MM/yyyy").parse(aDate);
+                addDate = new SimpleDateFormat("mm/dd/yyyy").parse(aDate);
                 isValid = true;
             }
             catch(Exception e)
