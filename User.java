@@ -14,6 +14,11 @@ public class User
     /**
      * Constructor for objects of class User
      */
+    public User()
+    {
+
+    }
+    
     public User(String userName, String password)
     {
         this.userName = userName;

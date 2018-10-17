@@ -7,8 +7,8 @@ import java.util.*;
  */
 public class Visitor extends User
 {
-    private User newUser;
-    
+    private Customer newUser;
+    //private Customer newCustomer;
     /**
      * Constructor for objects of class Visitor
      */
@@ -20,9 +20,10 @@ public class Visitor extends User
     /**
      * 
      */
-    public void register(String username, String password)
+    public void register(String username, String password, int phone, String address,
+                            String email)
     {
-        newUser = new Customer(username, password);
+        newUser = new Customer(username, password, phone, address, email);
     }
     
     public boolean existChecking(HashMap<String, User> map, String userName)
@@ -57,7 +58,7 @@ public class Visitor extends User
         return true;
     }
     
-    public User getRegisterInfo()
+    public Customer getRegisterInfo()
     {
         return newUser;
     }

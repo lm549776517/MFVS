@@ -53,9 +53,14 @@ public class Cart
         return cartList;
     }
     
+    public ArrayList getHistoryOrder()
+    {
+        return orderHistory;
+    }
+    
     public float calculateUnitPrice()
     {
-        return 1;
+    return 1;
         
     }
     

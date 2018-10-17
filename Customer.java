@@ -8,14 +8,24 @@
 public class Customer extends User
 {
     // instance variables - replace the example below with your own
-    Cart shopingCart = new Cart();
+    Cart shoppingCart = new Cart();
+    int phone;
+    String address;
+    String email;
 
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(String username, String password)
+    public Customer()
+    {
+    }
+    
+    public Customer(String username, String password, int  phone, String address, String email)
     {
         super(username, password);
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
     }
 
     /**
@@ -24,13 +34,49 @@ public class Customer extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void checkShopingCart()
+    public void checkShoppingCart()
     {
-        shopingCart.getCart();
+        shoppingCart.getCart();
     }
     
-    public void s()
+    public void addToShoppingCart(Product product, Float quantity)
     {
-        
+        shoppingCart.addProduct(product,quantity);
     }
+    
+    public void viewOrder()
+    {
+        shoppingCart.getHistoryOrder();
+    }
+    
+     public int getPhone()
+    {
+        return phone;
+    }
+    
+    public String getAddress()
+    {
+        return address;
+    }
+    
+    public String getEmail()
+    {
+        return email;
+    }
+    
+    public void setPhone(int newPhone)
+    {
+        phone = newPhone; 
+    }
+    
+    public void setAddress(String newAddress)
+    {
+        address = newAddress;
+    }
+    
+    public void setEmail(String newEmail)
+    {
+        email = newEmail;
+    }
+
 }
