@@ -8,18 +8,26 @@ import java.util.*;
 public class Cart
 {
     private HashMap<Product, Float> cartList;
+    private HashMap<String, Float> unitPrice;
     private ArrayList<OrderList> orderHistory;
-    
+    private float totalprice;
+    private float unitprice;
     //miss dateAdded
     public Cart()
     {
        cartList = new HashMap<Product, Float>();
+       unitPrice = new HashMap<String, Float>();
        orderHistory = new ArrayList<>();
+       totalprice = 0;
+       unitprice = 0;
     }
     
-    public void addProduct(Product product, Float quantity)
+    public void addProduct(Product product, float quantity)
     {
+        String name = product.getProductName();
+        unitprice = quantity * product.getPrice();
         cartList.put(product, quantity);
+        unitPrice.put(name, unitprice);
     }
     
     public void deleteProduct(Product product)
@@ -48,7 +56,7 @@ public class Cart
         orderHistory.add(checkOut);
     }
     
-    public HashMap getCart()
+    public HashMap<Product, Float> getCart()
     {
         return cartList;
     }
@@ -58,14 +66,22 @@ public class Cart
         return orderHistory;
     }
     
-    public float calculateUnitPrice()
+    public HashMap<String, Float> calculateUnitPrice()
     {
-    return 1;
-        
+        return unitPrice;
     }
     
     public float calculateTotalPrice()
     {
-        return 1;
+        totalprice = 0;
+        Iterator<Product> it = cartList.keySet().iterator();
+        while(it.hasNext())
+        {
+            Product product = it.next();
+            float price = product.getPrice(); 
+            float quantity = cartList.get(product);
+            totalprice += price * quantity;
+        }
+        return totalprice;
     }
 }
