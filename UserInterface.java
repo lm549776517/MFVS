@@ -1,4 +1,3 @@
-
 import java.util.*;
 import java.util.Scanner;
 import java.text.SimpleDateFormat;
@@ -50,22 +49,21 @@ public class UserInterface
         switch(option)
         {
             case 1:
-            loginPage(); 
-            break;
+                loginPage(); 
+                break;
             case 2:
-            userRegister(aVisitor);
-            break;
+                userRegister(aVisitor);
+                break;
             case 3:
-
-            visitorMenu(aVisitor);
-            break;
+                visitorMenu(aVisitor);
+                break;
         }
     }
     
     public void editProduct(int index,
                             String attribute)
     {
-        index = index -1;
+        index = index - 1;
         Scanner input = new Scanner(System.in);
         ArrayList<Product> productList;
         productList = this.productList.getProductList();
@@ -145,14 +143,37 @@ public class UserInterface
     public void removeProduct(int index)
     {
         index = index -1;
-      
         ArrayList<Product> productList;
         productList = this.productList.getProductList();
         String productID = productList.get(index).getProductID();
         this.productList.removeProductAsID(productID);
-       
-        
-       //productList.removeProductAsID(productList.getProductList().get(index).getProductID());
+    }
+    
+    public void viewProductVisitor()
+    {
+        Scanner input = new Scanner(System.in);
+        int index = 1;
+        ArrayList<Product> productList;
+        productList = this.productList.getProductList();
+        //Collections.sort(productList, ALPHABETICAL_ORDER); Sort productList
+        System.out.println("This is product list.");
+        System.out.println("Index ProductID ProductName Category Type SaleMethod Source AddDate ShelfLife Price Quantity");
+        for (Product item : productList)
+        {
+            System.out.printf("%d %s %s %s %s %s %s %tD %d %f %f%n", index, item.getProductID(),
+                                                            item.getProductName(), item.getCategory(),
+            item.getType(),item.getSaleMethod(),item.getSource(),item.getAddDate(),
+            item.getShelfLife(),item.getPrice(),item.getQuantity());
+            index ++;
+        }
+        System.out.println("");
+        System.out.println("Press 1 Return to previous menu");
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            Visitor visitor = new Visitor();
+            visitorMenu(visitor);
+        }
     }
     
     public void viewProductCustomer()
@@ -172,8 +193,59 @@ public class UserInterface
             item.getShelfLife(),item.getPrice(),item.getQuantity());
             index ++;
         }
+        System.out.println("");
+        System.out.println("Press 1 Return to previous menu");
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            customerMenu();
+        }
     }
     
+    public void viewCustomerPage()
+    {
+        Scanner input = new Scanner(System.in);
+        int index = 1;
+        Iterator<String> it = userList.keySet().iterator();
+        System.out.println("This is view customer page.");
+        System.out.println("Index UserName Phone Address Email");
+        while(it.hasNext())
+        {
+            String userName = it.next();
+            System.out.printf("%d %s %d %s %s", index, userList.get(userName).getUserName(),
+                              userList.get(userName).getPhone(), userList.get(userName).getAddress(), 
+                              userList.get(userName).getAddress());    
+            index ++;
+        }
+        System.out.println("");
+        System.out.println("Press 1 Romove customer");
+        System.out.println("Press 2 Return to owner menu.");
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            boolean co = false;
+            do
+            {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Input the userName: ");
+                String userName = sc.nextLine();
+                userList.remove(userName);
+                System.out.println("Remove customer compeleted!");            
+                System.out.println("Press E/e to end customer remove or any keys to continue");
+                String con = sc.nextLine();
+            if(con.equals("/[Ee]"))
+            {
+                co = true;
+            }
+            }while (!co);
+            viewCustomerPage();
+        }
+        if (option == 2)
+        {
+            ownerMenu();
+        }
+    }
+
     public void viewProductPage()
     {
         Scanner input = new Scanner(System.in);
@@ -182,7 +254,6 @@ public class UserInterface
         productList = this.productList.getProductList();
         //Collections.sort(productList, ALPHABETICAL_ORDER); Sort productList
         System.out.println("This is product list.");
-        
         System.out.println("Index ProductID ProductName Category Type SaleMethod Source AddDate ShelfLife Price Quantity");
         for (Product item : productList)
         {
@@ -209,8 +280,8 @@ public class UserInterface
             editProduct(productIndex, attribute);
             System.out.println("Edit compeleted!");            
             System.out.println("Press E/e to end editing or any keys to continue");
-            char con = sc2.nextLine().charAt(0);
-            if(con == 'E' || con == 'e')
+            String con = sc2.nextLine();
+            if(con.equals("/[Ee]"))
             {
                 co = true;
             }
@@ -227,8 +298,8 @@ public class UserInterface
             removeProduct(productIndex);
             Scanner sc2 = new Scanner(System.in);
             System.out.println("Press E/e to end deleting or any keys to continue");
-            char con = sc2.nextLine().charAt(0);
-            if(con == 'E' || con == 'e')
+            String con = sc2.nextLine();
+            if(con.equals("/[Ee]"))
             {
                 co = true;
             }
@@ -241,8 +312,6 @@ public class UserInterface
         }
     }
 
-
-
     public void userRegister(Visitor visitor)
     {
         Scanner input = new Scanner(System.in);
@@ -251,14 +320,15 @@ public class UserInterface
         String email;
         String address;
         int phonenumber;
-        System.out.println("Please input the username!");
+        System.out.println("This is register page!");
+        System.out.println("Please input the username:");
         username = input.nextLine();
         boolean checkLength = visitor.userNameLengthChecking(username);
         boolean checkExist = visitor.existChecking(userAccount.getAccount(),username);
         while (checkLength == false) 
         {
             System.out.println("Username must less than 16 characters!");
-            System.out.println("Please input the username!");
+            System.out.println("Please input the username:");
             username = input.nextLine();
             checkLength = visitor.userNameLengthChecking(username);
         }
@@ -267,20 +337,20 @@ public class UserInterface
             while (checkExist == false)
             {
                 System.out.println("Username has already exist!");
-                System.out.println("Please input the username!");
+                System.out.println("Please input the username: ");
                 username = input.nextLine();
                 checkLength = visitor.userNameLengthChecking(username);
                 while (checkLength == false) 
                 {
                     System.out.println("Username must less than 16 characters!");
-                    System.out.println("Please input the username!");
+                    System.out.println("Please input the username: ");
                     username = input.nextLine();
                     checkLength = visitor.userNameLengthChecking(username);
                 }
                 checkExist = visitor.existChecking(userAccount.getAccount(),username);
             }
         }        
-        System.out.println("Please input the password!");
+        System.out.println("Please input the password: ");
         password = input.nextLine();
         boolean checkPassword = visitor.passwordChecking(password);
         while (checkPassword == false)
@@ -289,11 +359,11 @@ public class UserInterface
             username = input.nextLine();
             checkPassword = visitor.passwordChecking(password);
         }
-        System.out.println("Please input the Email address!");
+        System.out.println("Please input the Email address: ");
         email = input.nextLine();
-        System.out.println("Please input the Address!");
+        System.out.println("Please input the Address: ");
         address = input.nextLine();
-        System.out.println("Please input the phone number!");
+        System.out.println("Please input the phone number:");
         phonenumber = input.nextInt();
         visitor.register(username, password,phonenumber,address,email);
         userAccount.addUser(visitor.getRegisterInfo()); 
@@ -306,7 +376,7 @@ public class UserInterface
         System.out.println("Ower menu: ");
         System.out.println("Press 1 View Product.");
         System.out.println("Press 2 Add product.");
-        System.out.println("Press 3 Manage customer.");
+        System.out.println("Press 3 View customer.");
         System.out.println("Press 4 Log out");
 
         Scanner sc = new Scanner(System.in);
@@ -321,14 +391,13 @@ public class UserInterface
                 addProduct();
                 break;
             case 3:
+                viewCustomerPage();
                 break;
             case 4:
                 //currentUser = new User();
                 System.out.println("You have logged out!");
                 intialMenu();
                 break;
-                
-
         }
     }
 
@@ -354,10 +423,17 @@ public class UserInterface
         switch(option)
         {
             case 1:
-            userRegister(visitor);
-            break;
+                userRegister(visitor);
+                break;
+            
+            case 2:
+                viewProductVisitor();
+                break;
+            
+            case 3:
+                //
+                break;
         }
-
     }
 
     public void customerMenu()
@@ -376,9 +452,10 @@ public class UserInterface
         switch(option)
         {
             case 1:
-                viewProductPage();
+                viewProductCustomer();
                 break;
             case 2:
+                //search
                 break;
             case 3:
                 updateProfilePage();
@@ -392,7 +469,7 @@ public class UserInterface
             case 6:
                 currentUser = new User();
                 System.out.println("You have logged out!");
-                loginPage();
+                intialMenu();
                 break;
         }
     }
@@ -571,21 +648,6 @@ public class UserInterface
             }
         }
         return true;
-    }
-
-    public void mainPage()
-    {
-        intialMenu();
-        Scanner input = new Scanner(System.in);
-        int option = input.nextInt();
-        if (option == 1)
-        {
-
-        }
-        else if (option == 2)
-        {
-
-        }
     }
 
     public boolean login(String username, String password, Account userAccount)
