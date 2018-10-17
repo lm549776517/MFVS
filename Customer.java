@@ -34,21 +34,31 @@ public class Customer extends User
      * @param  y  a sample parameter for a method
      * @return    the sum of x and y
      */
-    public void checkShoppingCart()
+    /*public void checkShoppingCart()
     {
         shoppingCart.getCart();
-    }
+    }*/
     
     public void addToShoppingCart(Product product, Float quantity)
     {
         shoppingCart.addProduct(product,quantity);
     }
-    
-    public void viewOrder()
+    /*
+    public HashMap<Product, Float> viewOrder()
     {
         shoppingCart.getHistoryOrder();
     }
     
+    public HashMap<Product, Float> getUnitPrice()
+    {
+        return shoppingCart.calculateUnitPrice();
+    }
+    */
+     public String getUserName()
+     {
+         return super.getUserName();
+     }
+     
      public int getPhone()
     {
         return phone;

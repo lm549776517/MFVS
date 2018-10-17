@@ -193,10 +193,40 @@ public class UserInterface
             item.getShelfLife(),item.getPrice(),item.getQuantity());
             index ++;
         }
-        System.out.println("");
-        System.out.println("Press 1 Return to previous menu");
+        System.out.println("Press 1 to add to cart!");
+        System.out.println("Press 2 to menu!");
         int option = input.nextInt();
         if (option == 1)
+        {
+            boolean co = false;
+            do
+            {
+            System.out.println("Please input index of the product name you wanna add to cart!");
+            int prodectIndex = input.nextInt();
+            System.out.println("Please input the quantity you wanna add!");
+            Scanner input2 = new Scanner(System.in);
+            float quantity = input2.nextFloat();
+            currentCustomer.addToShoppingCart(productList.get(prodectIndex-1),quantity);
+            System.out.println("Add successfully!");            
+            System.out.println("Press E/e to end adding or any keys to continue");
+            Scanner input3 = new Scanner(System.in);
+            char con = input3.nextLine().charAt(0);
+            if(con == 'E' || con == 'e')
+            {
+                co = true;
+            }
+            }while(!co);
+            customerMenu();
+        }
+        
+        if (option == 2)
+        {
+            customerMenu();
+        }
+        System.out.println("");
+        System.out.println("Press 1 Return to previous menu");
+        int option2 = input.nextInt();
+        if (option2 == 1)
         {
             customerMenu();
         }
@@ -418,6 +448,7 @@ public class UserInterface
             item.getShelfLife(),item.getPrice(),item.getQuantity());
             index ++;
         }
+        System.out.println("");
         System.out.println("Press 1 Edit product");
         System.out.println("Press 2 Remove product");
         System.out.println("Press 3 Return to Owner Menu");
@@ -608,7 +639,8 @@ public class UserInterface
         System.out.println("Press 3 Update profile.");
         System.out.println("Press 4 View shopping cart.");
         System.out.println("Press 5 View order.");
-        System.out.println("Press 6 Log off.");
+        System.out.println("Press 6 View your profile");
+        System.out.println("Press 7 Log off.");
         
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
@@ -626,12 +658,82 @@ public class UserInterface
                 updateProfilePage();
                 break;
             case 4:
-                currentCustomer.checkShoppingCart();
+                HashMap<Product, Float> l = currentCustomer.shoppingCart.getCart();
+                HashMap<String, Float> p = currentCustomer.shoppingCart.
+                    calculateUnitPrice();
+                System.out.println("Index productName Quantity unitprice");
+                Iterator<Product> it = l.keySet().iterator();
+                int index=0;
+                while(it.hasNext())
+                {
+                    index ++;
+                    Product product = it.next();
+                    Iterator<String> it2 = p.keySet().iterator();
+                    while(it2.hasNext())
+                    {
+                        String name = it2.next();
+                        if (product.getProductName().equals(name))
+                        {System.out.printf("%d %s %f %f", index, product
+                         .getProductName(), l.get(product),p.get(name));
+                        }
+                    }
+                }
+                System.out.println("Press C/c to check out or E/e to return to menu!");
+                Scanner input = new Scanner(System.in);
+                char con = input.nextLine().charAt(0);
+                if(con == 'C' || con == 'c')
+                {
+                    currentCustomer.shoppingCart.checkOut();
+                    System.out.println("Order has finished check out");
+                    System.out.println("Press E/e to return to menu!");
+                    Scanner input4 = new Scanner(System.in);
+                    char con4 = input4.nextLine().charAt(0);
+                    if(con4 == 'E' || con4 == 'e')
+                    {
+                        customerMenu();
+                    }
+                }
+                if(con == 'E' || con == 'e')
+                {
+                    customerMenu();
+                }
                 break;
             case 5:
-                currentCustomer.viewOrder();
+                ArrayList<OrderList> orderList = currentCustomer.shoppingCart.
+                getHistoryOrder();
+                System.out.println("Index orderID dateShipped shipStatus subtotal");
+                int index1 = 0;
+                for(OrderList order:orderList)
+                {
+                    index1++;
+                    System.out.printf("%d %d %s %b %f", index1, order
+                         .getOrderID(), order.getDateShipped(),order.getShippedStatus()
+                         ,order.getSubtotal());
+                }
+                System.out.println("");
+                Scanner input2 = new Scanner(System.in);
+                System.out.println("Press E/e to return to menu!");
+                char con2 = input2.nextLine().charAt(0);
+                if(con2 == 'E' || con2 == 'e')
+                {
+                    customerMenu();
+                }
                 break;
             case 6:
+                System.out.println("userName phone address Email");
+                System.out.printf("%s %d %s %s",currentCustomer.getUserName(),
+                currentCustomer.getPhone(),currentCustomer.getAddress(),
+                currentCustomer.getAddress());
+                System.out.println("");
+                Scanner input3 = new Scanner(System.in);
+                System.out.println("Press E/e to return to menu!");
+                char con3 = input3.nextLine().charAt(0);
+                if(con3 == 'E' || con3 == 'e')
+                {
+                    customerMenu();
+                }
+                break;
+            case 7:
                 currentUser = new User();
                 System.out.println("You have logged out!");
                 intialMenu();
@@ -691,6 +793,13 @@ public class UserInterface
         System.out.println("Please input your new Address");
         String newaddress = input.nextLine();
         currentCustomer.setAddress(newaddress);
+        System.out.println("Update successfully!");
+        System.out.println("Press E/e to return to menu!");
+        char con = input.nextLine().charAt(0);
+            if(con == 'E' || con == 'e')
+            {
+                customerMenu();
+            }
     }
     
     public void addProduct()
