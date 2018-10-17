@@ -45,6 +45,7 @@ public class OrderList
         return orderList;
     }
 
+
     
     public int getOrderID()
     {
@@ -58,12 +59,13 @@ public class OrderList
     
     public boolean getShippedStatus()
     {
-        return shippedStatus;
+        return shipStatus;
     }
     
     public float subtotal()
     {
         return subtotal;
     }
+
 
 }

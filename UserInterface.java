@@ -51,6 +51,9 @@ public class UserInterface
         Scanner input = new Scanner(System.in);
         String username;
         String password;
+        String Email;
+        String address;
+        int phonenumber;
         System.out.println("Please input the username!");
         username = input.nextLine();
         boolean checkLength = visitor.userNameLengthChecking(username);
@@ -89,7 +92,13 @@ public class UserInterface
             username = input.nextLine();
             checkPassword = visitor.passwordChecking(password);
         }
-        visitor.register(username, password);
+        System.out.println("Please input the Email address!");
+        Email = input.nextLine();
+        System.out.println("Please input the Address!");
+        address = input.nextLine();
+        System.out.println("Please input the phone number!");
+        phonenumber = input.nextInt();
+        //visitor.register(username, password,Email,address,phonenumber);
         userAccount.addUser(visitor.getRegisterInfo()); 
         System.out.println("Register successfully!");
         loginPage();
