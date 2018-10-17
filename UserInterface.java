@@ -202,6 +202,66 @@ public class UserInterface
         }
     }
     
+    public void searchCustomerPage()
+    {
+        Scanner input = new Scanner(System.in);
+        int index;
+        boolean co1 = false;
+        do
+        {
+            index = 1;
+            System.out.println("Please input the customer name");
+            String userName = input.nextLine();
+            System.out.println("Index UserName Phone Address Email");
+            if(userList.containsKey(userName))
+            {                          
+                System.out.printf("%d %s %d %s %s", index, userList.get(userName).getUserName(),
+                                  userList.get(userName).getPhone(), userList.get(userName).getAddress(), 
+                                  userList.get(userName).getAddress()); 
+                                  System.out.println("");
+                index ++;
+            
+            }
+            else
+            {
+                System.out.println("No such customer!");
+            }
+            System.out.println("Press E/e to end searching or any key to continue.");
+            String end = input.nextLine();
+            if (end.matches("[Ee]"))
+            {
+                co1 = true;
+            }
+            
+        }while(!co1);
+        System.out.println("Press 1 Romove customer");
+        System.out.println("Press 2 Return to owner menu.");
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            boolean co = false;
+            do
+            {
+                Scanner sc = new Scanner(System.in);
+                System.out.println("Input the userName: ");
+                String userName2 = sc.nextLine();
+                userList.remove(userName2);
+                System.out.println("Remove customer compeleted!");            
+                System.out.println("Press E/e to end customer remove or any keys to continue");
+                String con = sc.nextLine();
+            if(con.matches("[Ee]"))
+            {
+                co = true;
+            }
+            }while (!co);
+            viewCustomerPage();
+        }
+        if (option == 2)
+        {
+            ownerMenu();
+        }
+    }
+    
     public void viewCustomerPage()
     {
         Scanner input = new Scanner(System.in);
@@ -214,10 +274,11 @@ public class UserInterface
             String userName = it.next();
             System.out.printf("%d %s %d %s %s", index, userList.get(userName).getUserName(),
                               userList.get(userName).getPhone(), userList.get(userName).getAddress(), 
-                              userList.get(userName).getAddress());    
+                              userList.get(userName).getAddress());
+                              System.out.println("");
             index ++;
         }
-        System.out.println("");
+        
         System.out.println("Press 1 Romove customer");
         System.out.println("Press 2 Return to owner menu.");
         int option = input.nextInt();
@@ -233,7 +294,7 @@ public class UserInterface
                 System.out.println("Remove customer compeleted!");            
                 System.out.println("Press E/e to end customer remove or any keys to continue");
                 String con = sc.nextLine();
-            if(con.equals("/[Ee]"))
+            if(con.matches("[Ee]"))
             {
                 co = true;
             }
@@ -241,6 +302,100 @@ public class UserInterface
             viewCustomerPage();
         }
         if (option == 2)
+        {
+            ownerMenu();
+        }
+    }
+    
+    public void searchProductPage()
+    {
+        boolean con1 = false;
+        ArrayList<Product> productList = this.productList.getProductList();
+        int index;
+        do
+        {
+            index = 1;
+            System.out.println("Please input the product name:");
+            Scanner sc = new Scanner(System.in);
+            String term = sc.nextLine();
+            
+            System.out.println("Index ProductID ProductName Category Type SaleMethod Source AddDate ShelfLife Price Quantity");
+            
+            boolean find = false;
+            for(Product p : productList)
+            {
+                if (p.getProductName().equals(term))
+                {
+                   
+    
+                    System.out.printf("%d %s %s %s %s %s %s %tD %d %f %f%n", index, p.getProductID(),
+                                                                    p.getProductName(), p.getCategory(),
+                    p.getType(),p.getSaleMethod(),p.getSource(),p.getAddDate(),
+                    p.getShelfLife(),p.getPrice(),p.getQuantity());
+                    System.out.println();
+                    index ++;
+                    find = true;            
+                }
+            }
+            if (!find)
+            {
+                System.out.println("No such product!");
+            }
+            System.out.println("Press E/e to end searching or other key to continue.");
+            String end = sc.nextLine();
+            if (end.matches("[Ee]"))
+            {
+                con1 = true;
+            }
+        }while(!con1);
+        
+        
+        
+        Scanner input = new Scanner(System.in);       
+        System.out.println("Press 1 Edit product");
+        System.out.println("Press 2 Remove product");
+        System.out.println("Press 3 Return to Owner Menu");
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            boolean co = false;
+            do
+            {
+            System.out.println("Input the product index: ");
+            int productIndex = input.nextInt();
+            System.out.println("Input the product attribute: ");
+            Scanner sc2 = new Scanner(System.in);
+            String attribute = sc2.nextLine();
+            editProduct(productIndex, attribute);
+            System.out.println("Edit compeleted!");            
+            System.out.println("Press E/e to end editing or any keys to continue");
+            String con = sc2.nextLine();
+            if(con.matches("[Ee]"))
+            {
+                co = true;
+            }
+            }while(!co);
+            viewProductPage();
+        }
+        if (option == 2)
+        {
+            boolean co = false;
+            do
+            {
+            System.out.println("Input the product index: ");
+            int productIndex = input.nextInt();
+            removeProduct(productIndex);
+            Scanner sc2 = new Scanner(System.in);
+            System.out.println("Press E/e to end deleting or any keys to continue");
+            String con = sc2.nextLine();
+            if(con.matches("[Ee]"))
+            {
+                co = true;
+            }
+            }while(!co);
+            viewProductPage();
+        }
+        if (option == 3)
         {
             ownerMenu();
         }
@@ -281,7 +436,7 @@ public class UserInterface
             System.out.println("Edit compeleted!");            
             System.out.println("Press E/e to end editing or any keys to continue");
             String con = sc2.nextLine();
-            if(con.equals("/[Ee]"))
+            if(con.matches("[Ee]"))
             {
                 co = true;
             }
@@ -299,7 +454,7 @@ public class UserInterface
             Scanner sc2 = new Scanner(System.in);
             System.out.println("Press E/e to end deleting or any keys to continue");
             String con = sc2.nextLine();
-            if(con.equals("/[Ee]"))
+            if(con.matches("[Ee]"))
             {
                 co = true;
             }
@@ -375,9 +530,11 @@ public class UserInterface
     {
         System.out.println("Ower menu: ");
         System.out.println("Press 1 View Product.");
-        System.out.println("Press 2 Add product.");
-        System.out.println("Press 3 View customer.");
-        System.out.println("Press 4 Log out");
+        System.out.println("Press 2 Search Product");
+        System.out.println("Press 3 Add product.");
+        System.out.println("Press 4 View customer.");
+        System.out.println("Press 5 Search customer.");
+        System.out.println("Press 6 Log out");
 
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
@@ -388,12 +545,18 @@ public class UserInterface
                 viewProductPage();
                 break;
             case 2:
-                addProduct();
+                searchProductPage();
                 break;
             case 3:
-                viewCustomerPage();
+                addProduct();
                 break;
             case 4:
+                viewCustomerPage();
+                break;
+            case 5:    
+                searchCustomerPage();
+                break;
+            case 6:
                 //currentUser = new User();
                 System.out.println("You have logged out!");
                 intialMenu();
@@ -431,7 +594,8 @@ public class UserInterface
                 break;
             
             case 3:
-                //
+                searchProduct();
+                visitorMenu(visitor);
                 break;
         }
     }
@@ -455,7 +619,8 @@ public class UserInterface
                 viewProductCustomer();
                 break;
             case 2:
-                //search
+                searchProduct();
+                customerMenu();
                 break;
             case 3:
                 updateProfilePage();
@@ -472,6 +637,46 @@ public class UserInterface
                 intialMenu();
                 break;
         }
+    }
+    
+    public void searchProduct()
+    {
+        boolean con = false;
+        do
+        {
+            System.out.println("Please input the product name:");
+            Scanner sc = new Scanner(System.in);
+            String term = sc.nextLine();
+            ArrayList<Product> productList = this.productList.getProductList();
+            System.out.println("Index ProductID ProductName Category Type SaleMethod Source AddDate ShelfLife Price Quantity");
+            int index = 1;
+            boolean find = false;
+            for(Product p : productList)
+            {
+                if (p.getProductName().equals(term))
+                {
+                   
+    
+                    System.out.printf("%d %s %s %s %s %s %s %tD %d %f %f%n", index, p.getProductID(),
+                                                                    p.getProductName(), p.getCategory(),
+                    p.getType(),p.getSaleMethod(),p.getSource(),p.getAddDate(),
+                    p.getShelfLife(),p.getPrice(),p.getQuantity());
+                    System.out.println();
+                    index ++;
+                    find = true;            
+                }
+            }
+            if (!find)
+            {
+                System.out.println("No such product!");
+            }
+            System.out.println("Press E/e to end searching or other key to continue.");
+            String end = sc.nextLine();
+            if (end.matches("[Ee]"))
+            {
+                con = true;
+            }
+        }while(!con);
     }
     
     public void updateProfilePage()
