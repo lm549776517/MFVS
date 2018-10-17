@@ -54,6 +54,8 @@ public class Cart
         OrderList checkOut = new OrderList();
         checkOut.generateList(cartList);
         orderHistory.add(checkOut);
+        HashMap newCartList = new HashMap<Product, Float>();
+        cartList = newCartList;
     }
     
     public HashMap<Product, Float> getCart()

@@ -201,8 +201,9 @@ public class UserInterface
             boolean co = false;
             do
             {
+            Scanner input4 = new Scanner(System.in);
             System.out.println("Please input index of the product name you wanna add to cart!");
-            int prodectIndex = input.nextInt();
+            int prodectIndex = input4.nextInt();
             System.out.println("Please input the quantity you wanna add!");
             Scanner input2 = new Scanner(System.in);
             float quantity = input2.nextFloat();
@@ -374,7 +375,7 @@ public class UserInterface
                 while (checkLength == false) 
                 {
                     System.out.println("Username must less than 16 characters!");
-                    System.out.println("Please input the username: ");
+                    System.out.println("Please inp+ut the username: ");
                     username = input.nextLine();
                     checkLength = visitor.userNameLengthChecking(username);
                 }
@@ -387,7 +388,7 @@ public class UserInterface
         while (checkPassword == false)
         {
             System.out.println("Password must within 8-16");
-            username = input.nextLine();
+            password = input.nextLine();
             checkPassword = visitor.passwordChecking(password);
         }
         System.out.println("Please input the Email address: ");
@@ -510,6 +511,7 @@ public class UserInterface
                         if (product.getProductName().equals(name))
                         {System.out.printf("%d %s %f %f", index, product
                          .getProductName(), l.get(product),p.get(name));
+                         System.out.println("");
                         }
                     }
                 }
@@ -544,6 +546,7 @@ public class UserInterface
                     System.out.printf("%d %d %s %b %f", index1, order
                          .getOrderID(), order.getDateShipped(),order.getShippedStatus()
                          ,order.getSubtotal());
+                    System.out.println("");
                 }
                 System.out.println("");
                 Scanner input2 = new Scanner(System.in);
