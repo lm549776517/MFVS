@@ -54,6 +54,139 @@ public class UserInterface
             break;
         }
     }
+    
+    public void editProduct(int index,
+                            String attribute)
+    {
+        index = index -1;
+        Scanner input = new Scanner(System.in);
+        ArrayList<Product> productList;
+        productList = this.productList.getProductList();
+        switch (attribute)
+        {
+            case "productName":
+                String newAttribute1 = inputEditAttribute("productName");
+                productList.get(index).setProductName(newAttribute1);
+                break;
+               
+            case "category":
+                String newAttribute2 = inputEditAttribute("category");
+                productList.get(index).setCategory(newAttribute2);
+                break;
+                
+            case "type":
+                String newAttribute3 = inputEditAttribute("type");
+                productList.get(index).setType(newAttribute3);
+                break;
+                
+            case "saleMethod":
+                String newAttribute4 = inputEditAttribute("saleMethod");
+                productList.get(index).setSaleMethod(newAttribute4);
+                break;
+                
+            case "source":
+                String newAttribute5 = inputEditAttribute("source");
+                productList.get(index).setSource(newAttribute5);
+                break;
+                
+            case "addDate":
+                Date newAttribute6 = inputDate();
+                productList.get(index).setAddDate(newAttribute6);
+                break;
+                
+            case "ShelfLife":
+                int newAttribute7 = inputEditAttribute3("shelfLife");
+                productList.get(index).setShelfLife(newAttribute7);
+                break;
+                
+            case "Price":
+                float newAttribute8 = inputEditAttribute1("price");
+                productList.get(index).setPrice(newAttribute8);
+                break;
+            
+            case "Quantity":
+                float newAttribute9 = inputEditAttribute1("quantity");
+                productList.get(index).setQuantity(newAttribute9);
+                break;
+        }
+    }
+    
+    public String inputEditAttribute(String attribute)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input new " + attribute + " :");
+        String newAttribute = input.nextLine();
+        return newAttribute;
+    }
+    
+    public int inputEditAttribute3(String attribute)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input new " + attribute + " :");
+        int newAttribute = input.nextInt();
+        return newAttribute;
+    }
+    
+    public float inputEditAttribute1(String attribute)
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Input new " + attribute + " :");
+        float newAttribute = input.nextFloat();
+        return newAttribute;
+    }
+    
+    public void removeProduct(int index)
+    {
+        index = index -1;
+      
+        ArrayList<Product> productList;
+        productList = this.productList.getProductList();
+        String productID = productList.get(index).getProductID();
+        this.productList.removeProductAsID(productID);
+       
+        
+       //productList.removeProductAsID(productList.getProductList().get(index).getProductID());
+    }
+    
+    public void viewProductPage()
+    {
+        Scanner input = new Scanner(System.in);
+        int index = 1;
+        ArrayList<Product> productList;
+        productList = this.productList.getProductList();
+        //Collections.sort(productList, ALPHABETICAL_ORDER); Sort productList
+        System.out.println("This is product list.");
+        
+        System.out.println("Index ProductID ProductName Category Type SaleMethod Source AddDate ShelfLife Price Quantity");
+        for (Product item : productList)
+        {
+            System.out.printf("%d %s %s %s %s %s %s %tD %d %f %f%n", index, item.getProductID(),
+                                                            item.getProductName(), item.getCategory(),
+            item.getType(),item.getSaleMethod(),item.getSource(),item.getAddDate(),
+            item.getShelfLife(),item.getPrice(),item.getQuantity());
+            index ++;
+        }
+        System.out.println("Press 1 Edit product");
+        System.out.println("Press 2 Remove product");
+        int option = input.nextInt();
+        if (option == 1)
+        {
+            System.out.println("Input the product index: ");
+            int productIndex = input.nextInt();
+            System.out.println("Input the product attribute: ");
+            Scanner sc2 = new Scanner(System.in);
+            String attribute = sc2.nextLine();
+            editProduct(productIndex, attribute);
+        }
+        if (option == 2)
+        {
+            System.out.println("Input the product index: ");
+            int productIndex = input.nextInt();
+            removeProduct(productIndex);
+        }
+    }
+
+
 
     public void userRegister(Visitor visitor)
     {
@@ -116,22 +249,23 @@ public class UserInterface
     public void ownerMenu()
     {
         System.out.println("Ower menu: ");
-        System.out.println("Press 1 Search Product.");
-        System.out.println("Press 2 Edit product.");
-        System.out.println("Press 3 Add product.");
-        System.out.println("Press 4 Remove product.");
-        System.out.println("Press 5 Search customer.");
+        System.out.println("Press 1 View Product.");
+        System.out.println("Press 2 Add product.");
+        System.out.println("Press 3 Manage customer.");
 
         Scanner sc = new Scanner(System.in);
         int option = sc.nextInt();
 
         switch(option)
         {
-            case 1: 
+            case 1:
+                viewProductPage();
+                break;
             case 2:
+                addProduct();
+                break;
             case 3:
-            addProduct();
-            break;
+                
 
         }
     }
@@ -235,6 +369,8 @@ public class UserInterface
         
         ownerMenu();
     }
+    
+    
 
     public Date inputDate()
     {

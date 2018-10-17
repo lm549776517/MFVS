@@ -123,5 +123,10 @@ import java.util.*;
     {
         this.category = category;
     }
+    
+    public String getCategory()
+    {
+        return category;
+    }
 }
 
