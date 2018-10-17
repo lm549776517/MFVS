@@ -9,13 +9,19 @@ public class Customer extends User
 {
     // instance variables - replace the example below with your own
     Cart shopingCart = new Cart();
+    int phone;
+    String address;
+    String email;
 
     /**
      * Constructor for objects of class Customer
      */
-    public Customer(String username, String password)
+    public Customer(String username, String password, int  phone, String address, String email)
     {
         super(username, password);
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
     }
 
     /**

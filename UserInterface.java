@@ -54,6 +54,9 @@ public class UserInterface
         Scanner input = new Scanner(System.in);
         String username;
         String password;
+        String email;
+        String address;
+        int phonenumber;
         System.out.println("Please input the username!");
         username = input.nextLine();
         boolean checkLength = visitor.userNameLengthChecking(username);
@@ -92,11 +95,18 @@ public class UserInterface
             username = input.nextLine();
             checkPassword = visitor.passwordChecking(password);
         }
-        visitor.register(username, password);
+        System.out.println("Please input the Email address!");
+        email = input.nextLine();
+        System.out.println("Please input the Address!");
+        address = input.nextLine();
+        System.out.println("Please input the phone number!");
+        phonenumber = input.nextInt();
+        visitor.register(username, password,phonenumber,address,email);
         userAccount.addUser(visitor.getRegisterInfo()); 
         System.out.println("Register successfully!");
         loginPage();
     }
+
 
     public void ownerMenu()
     {
@@ -113,7 +123,8 @@ public class UserInterface
         int option=0;
         Scanner input = new Scanner(System.in);
         boolean optionValid = false;
-        while(!optionValid) {
+        while(!optionValid) 
+        {
          System.out.println("Visitor menu: ");
          System.out.println("Press 1 Register.");
          System.out.println("Press 2 View products.");

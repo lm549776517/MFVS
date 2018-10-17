@@ -44,4 +44,28 @@ public class OrderList
     {
         return orderList;
     }
+    
+    public int getOrderID()
+    {
+        return orderID;
+    }
+    
+    public String getDateShipped()
+    {
+        return dateShipped;
+    }
+    
+    public boolean getShipStatus()
+    {
+        return shipStatus;
+    }
+    
+    public float subtotal()
+    {
+        return subtotal;
+    }
+
+
+
+
 }

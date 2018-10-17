@@ -20,9 +20,10 @@ public class Visitor extends User
     /**
      * 
      */
-    public void register(String username, String password)
+    public void register(String username, String password, int phone, String address,
+                            String email)
     {
-        newUser = new Customer(username, password);
+        newUser = new Customer(username, password, phone, address, email);
     }
     
     public boolean existChecking(HashMap<String, User> map, String userName)

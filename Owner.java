@@ -15,6 +15,18 @@ public class Owner extends User
     public Owner()
     {
         super("Owner","777");
+        phoneNumber = 12345678;
+        eMail = "MFV@monash.com";
+    }
+    
+    public int getPhone()
+    {        
+        return phoneNumber;
+    }
+    
+    public String getMail()
+    {
+        return eMail;
     }
 
     public void login()
