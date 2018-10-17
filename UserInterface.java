@@ -19,20 +19,23 @@ public class UserInterface
     /**
      * 
      */
-   public void intialMenu()
-   {
+    public void intialMenu()
+    {
+        System.out.print('\u000C'); 
         int option = 0;
+        Visitor aVisitor = new Visitor();
         Scanner input = new Scanner(System.in);
         boolean optionValid = false;
         while(!optionValid) 
         {
             System.out.println("Welcome to MFVS!");
             System.out.println("Press 1 Login with username and password.");
-            System.out.println("Press 2 Visitor Mode.");
+            System.out.println("Press 2 Create a MFV account.");
+            System.out.println("Press 3 Visitor Mode.");
             option = input.nextInt();
-            if(option == 1 || option ==2)
+            if(option == 1 || option == 2 || option == 3)
             { 
-              optionValid = true;
+                optionValid = true;
             } else{
                 System.out.println("Invalid option! Please re-enter!");  
             }
@@ -40,15 +43,18 @@ public class UserInterface
         switch(option)
         {
             case 1:
-                loginPage(); 
-                break;
+            loginPage(); 
+            break;
             case 2:
-                Visitor aVisitor = new Visitor();
-                visitorMenu(aVisitor);
-                break;
+            userRegister(aVisitor);
+            break;
+            case 3:
+
+            visitorMenu(aVisitor);
+            break;
         }
-   }
-   
+    }
+
     public void userRegister(Visitor visitor)
     {
         Scanner input = new Scanner(System.in);
@@ -107,7 +113,6 @@ public class UserInterface
         loginPage();
     }
 
-
     public void ownerMenu()
     {
         System.out.println("Ower menu: ");
@@ -116,8 +121,21 @@ public class UserInterface
         System.out.println("Press 3 Add product.");
         System.out.println("Press 4 Remove product.");
         System.out.println("Press 5 Search customer.");
+
+        Scanner sc = new Scanner(System.in);
+        int option = sc.nextInt();
+
+        switch(option)
+        {
+            case 1: 
+            case 2:
+            case 3:
+            addProduct();
+            break;
+
+        }
     }
-    
+
     public void visitorMenu(Visitor visitor)
     {
         int option=0;
@@ -125,27 +143,27 @@ public class UserInterface
         boolean optionValid = false;
         while(!optionValid) 
         {
-         System.out.println("Visitor menu: ");
-         System.out.println("Press 1 Register.");
-         System.out.println("Press 2 View products.");
-         System.out.println("Press 3 Search products.");
-         option = input.nextInt();
-        if(option == 1 || option == 2 || option == 3)
-        { 
-          optionValid = true;
-        } else{
-            System.out.println("Invalid option! Please re-enter!");  
+            System.out.println("Visitor menu: ");
+            System.out.println("Press 1 Register.");
+            System.out.println("Press 2 View products.");
+            System.out.println("Press 3 Search products.");
+            option = input.nextInt();
+            if(option == 1 || option == 2 || option == 3)
+            { 
+                optionValid = true;
+            } else{
+                System.out.println("Invalid option! Please re-enter!");  
+            }
         }
-       }
         switch(option)
-       {
-        case 1:
+        {
+            case 1:
             userRegister(visitor);
             break;
         }
-       
+
     }
-    
+
     public void customerMenu()
     {
         System.out.println("Customer menu: ");
@@ -157,43 +175,67 @@ public class UserInterface
         System.out.println("Press 6 Log off.");
 
     }
-    
-    public void addOneProduct()
+
+    public void addProduct()
     {
-        Scanner input = new Scanner(System.in);
-        String productName = inputProductInfo("productName");
-        String category = inputProductInfo("category");
-        String saleMethod = inputProductInfo("saleMethod");
-        String source = inputProductInfo("source");
-        String type = inputProductInfo("type");
-        float price = inputFloat("price");
-        float quantity = inputFloat("quantity");
-        int shelfLife = inputInt("shelfLife");
-        Date addDate = inputDate();
-        System.out.println("Input information completed.");
-        System.out.println("Do you want to save this product? Y/N");
-        boolean stop = false;
-        while(! stop)
+        System.out.println("This is the add product window!");
+        boolean back = false;
+        do
         {
-            char choose = input.nextLine().charAt(0);
-            if (choose == 'Y' || choose == 'y')
+            Scanner input = new Scanner(System.in);
+            String productName = inputProductInfo("productName");
+            String category = inputProductInfo("category");
+            String saleMethod = inputProductInfo("saleMethod");
+            String source = inputProductInfo("source");
+            String type = inputProductInfo("type");
+            float price = inputFloat("price");
+            float quantity = inputFloat("quantity");
+            int shelfLife = inputInt("shelfLife");
+            Date addDate = inputDate();
+            System.out.println("Input information completed.");
+            System.out.println("Do you want to save this product? Y/N");
+            boolean stop = false;
+            while(! stop)
             {
-                productList.addProduct(productName, category, saleMethod, shelfLife,
-                                       source, price, type, addDate, quantity);
-                stop = true;
-            }  
-            else if (choose == 'N' || choose == 'n')
-            {
-                stop = true;
-                ownerMenu();
+                char choose = input.nextLine().charAt(0);
+                if (choose == 'Y' || choose == 'y')
+                {
+                    productList.addProduct(productName, category, saleMethod, shelfLife,
+                        source, price, type, addDate, quantity);
+                    System.out.println("Information saved!");
+                    stop = true;
+                    System.out.println("Press E/e to end adding or any keys to continue!");
+                    Scanner input2 = new Scanner(System.in);
+                    char ifContinue = input2.nextLine().charAt(0);
+                    if (ifContinue == 'E' || ifContinue == 'e')
+                    {
+                        back = true;
+                        stop = true;
+                    }
+                }  
+                else if (choose == 'N' || choose == 'n')
+                {
+                    System.out.println("Press E/e to end adding or any keys to continue!");
+                    Scanner input2 = new Scanner(System.in);
+                    char ifContinue = input2.nextLine().charAt(0);
+                    if (ifContinue == 'E' || ifContinue == 'e')
+                    {
+                        back = true;
+                        stop = true;
+                    }
+                    
+                    stop = true;                    
+                }
+                else
+                {
+                    System.out.println("Invalid input, please input Y or N.");
+                }
             }
-            else
-            {
-                System.out.println("Invalid input, please input Y or N.");
-            }
-        }   
+        }while(!back);
+        
+        ownerMenu();
     }
-    
+
     public Date inputDate()
     {
         Scanner input = new Scanner(System.in);
@@ -215,7 +257,7 @@ public class UserInterface
         }
         return addDate;
     }
-    
+
     public float inputFloat(String name)
     {
         Scanner input = new Scanner(System.in);
@@ -237,7 +279,7 @@ public class UserInterface
         }
         return num;
     }
-    
+
     public int inputInt(String name)
     {
         Scanner input = new Scanner(System.in);
@@ -259,7 +301,7 @@ public class UserInterface
         }
         return num;
     }
-    
+
     public String inputProductInfo(String name)
     {
         Scanner input = new Scanner(System.in);
@@ -280,8 +322,7 @@ public class UserInterface
         }
         return productInfo;
     }
-    
-    
+
     
     public boolean isAlpha(String aString) 
     {
@@ -296,7 +337,6 @@ public class UserInterface
         return true;
     }
 
-
     public void mainPage()
     {
         intialMenu();
@@ -304,14 +344,13 @@ public class UserInterface
         int option = input.nextInt();
         if (option == 1)
         {
-            
+
         }
         else if (option == 2)
         {
-            
+
         }
     }
-
 
     public boolean login(String username, String password, Account userAccount)
     {
@@ -330,7 +369,7 @@ public class UserInterface
         }
         return false;
     }
-    
+
     public void loginPage()
     {
         String userName;
@@ -344,12 +383,12 @@ public class UserInterface
             userName = input.nextLine();
             System.out.println("Please input password:");
             password = input.nextLine();
-            
+
             if (login(userName, password, userAccount))
             {
                 valid = true;
                 System.out.println("Login successfully");
-                if (userName == "Owner")
+                if (userName.equals("Owner"))
                 {
                     ownerMenu();
                 }
@@ -364,6 +403,5 @@ public class UserInterface
             }
         }
     }
-    
 
 }
